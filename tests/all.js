@@ -6,7 +6,7 @@ const readMetadata = require('read-metadata');
 
 const EditList = require('../lib');
 
-describe('slate-edit-blockquote', function() {
+describe('slate-trailing-block', function() {
     const tests = fs.readdirSync(__dirname);
     const plugin = EditList();
 
