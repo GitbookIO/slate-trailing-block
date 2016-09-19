@@ -1,0 +1,13 @@
+
+
+nodes:
+  - kind: block
+    type: heading
+    nodes:
+      - kind: text
+        text: My Title
+  - kind: block
+    type: footnote
+    nodes:
+      - kind: text
+        text: My Title

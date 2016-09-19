@@ -4,11 +4,13 @@ const path = require('path');
 const Slate = require('slate');
 const readMetadata = require('read-metadata');
 
-const EditList = require('../lib');
+const TrailingBlock = require('../lib');
 
 describe('slate-trailing-block', function() {
     const tests = fs.readdirSync(__dirname);
-    const plugin = EditList();
+    const plugin = TrailingBlock({
+        match: node => (node.type == 'paragraph' || node.type == 'footnote')
+    });
 
     tests.forEach(function(test) {
         if (test[0] === '.' || path.extname(test).length > 0) return;
