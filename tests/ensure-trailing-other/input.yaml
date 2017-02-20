@@ -7,6 +7,7 @@ nodes:
       - kind: text
         text: My Title
   - kind: block
+    # in unit tests, footnotes and paragraphs are matches for valid trailing block
     type: footnote
     nodes:
       - kind: text
