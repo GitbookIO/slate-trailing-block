@@ -6,5 +6,5 @@ document:
     type: heading
     nodes:
       - kind: text
-        ranges:
+        leaves:
           - text: My Title

@@ -6,36 +6,46 @@ const readMetadata = require('read-metadata');
 
 const TrailingBlock = require('../lib');
 
+const PLUGIN = TrailingBlock({
+    match: node => (node.type == 'paragraph' || node.type == 'footnote')
+});
+
+const SCHEMA = Slate.Schema.create({
+    plugins: [PLUGIN]
+});
+
+function deserializeValue(json) {
+    json.schema = SCHEMA;
+
+    return Slate.Value.fromJSON(
+        json,
+        { normalize: false }
+    );
+}
+
 describe('slate-trailing-block', function() {
     const tests = fs.readdirSync(__dirname);
-    const plugin = TrailingBlock({
-        match: node => (node.type == 'paragraph' || node.type == 'footnote')
-    });
 
     tests.forEach(function(test) {
         if (test[0] === '.' || path.extname(test).length > 0) return;
 
         it(test, function() {
             const dir = path.resolve(__dirname, test);
-
-            const inputPath = path.resolve(dir, 'input.yaml');
-            const input = readMetadata.sync(inputPath);
-
+            const input = readMetadata.sync(path.resolve(dir, 'input.yaml'));
             const expectedPath = path.resolve(dir, 'expected.yaml');
-            let expected;
-            if (fs.existsSync(expectedPath)) {
-                expected = readMetadata.sync(expectedPath);
-            }
+            const expected =
+                fs.existsSync(expectedPath) && readMetadata.sync(expectedPath);
 
+            // eslint-disable-next-line
             const runChange = require(path.resolve(dir, 'change.js'));
 
-            const stateInput = Slate.State.fromJSON(input);
+            const valueInput = deserializeValue(input);
 
-            const newState = runChange(plugin, stateInput);
+            const newChange = runChange(PLUGIN, valueInput.change());
 
             if (expected) {
-                const expectedState = Slate.State.fromJSON(expected);
-                expect(newState.toJSON()).toEqual(expectedState.toJSON());
+                const newDocJSon = newChange.value.toJSON();
+                expect(newDocJSon).toEqual(deserializeValue(expected).toJSON());
             }
         });
     });

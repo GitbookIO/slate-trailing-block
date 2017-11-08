@@ -6,12 +6,12 @@ document:
     type: heading
     nodes:
       - kind: text
-        ranges:
+        leaves:
           - text: My Title
   - kind: block
     # in unit tests, footnotes and paragraphs are matches for valid trailing block
     type: footnote
     nodes:
       - kind: text
-        ranges:
+        leaves:
           - text: My Title
