@@ -29,10 +29,10 @@ This plugin accepts options to redefine the following block types:
 
 ### Utilities
 
-`slate-trailing-block` exports utilities and transforms:
+`slate-trailing-block` exports utilities and changes:
 
-#### `transforms.focusAtEnd`
+#### `changes.focusAtEnd`
 
-`plugin.transforms.focusAtEnd(transform: Transform) => Transform`
+`plugin.changes.focusAtEnd(change: Change) => Change`
 
 Focus at the end of the last block.
