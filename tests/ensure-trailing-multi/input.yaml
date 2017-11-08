@@ -1,13 +1,16 @@
 
 
-nodes:
+document:
+  nodes:
   - kind: block
     type: heading
     nodes:
       - kind: text
-        text: My Title
+        ranges:
+          - text: My Title
   - kind: block
     type: code_block
     nodes:
       - kind: text
-        text: Some code
+        ranges:
+          - text: Some code
