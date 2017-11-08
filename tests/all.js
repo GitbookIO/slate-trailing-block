@@ -27,15 +27,15 @@ describe('slate-trailing-block', function() {
                 expected = readMetadata.sync(expectedPath);
             }
 
-            const runTransform = require(path.resolve(dir, 'transform.js'));
+            const runChange = require(path.resolve(dir, 'change.js'));
 
-            const stateInput = Slate.Raw.deserialize(input, { terse: true });
+            const stateInput = Slate.State.fromJSON(input);
 
-            const newState = runTransform(plugin, stateInput);
+            const newState = runChange(plugin, stateInput);
 
             if (expected) {
-                const newDocJSon = Slate.Raw.serialize(newState, { terse: true });
-                expect(newDocJSon).toEqual(expected);
+                const expectedState = Slate.State.fromJSON(expected);
+                expect(newState.toJSON()).toEqual(expectedState.toJSON());
             }
         });
     });

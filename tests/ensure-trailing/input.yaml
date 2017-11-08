@@ -1,8 +1,10 @@
 
 
-nodes:
+document:
+  nodes:
   - kind: block
     type: heading
     nodes:
       - kind: text
-        text: My Title
+        ranges:
+          - text: My Title
