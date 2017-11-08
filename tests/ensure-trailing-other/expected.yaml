@@ -6,11 +6,11 @@ document:
     type: heading
     nodes:
       - kind: text
-        ranges:
+        leaves:
           - text: My Title
   - kind: block
     type: footnote
     nodes:
       - kind: text
-        ranges:
+        leaves:
           - text: My Title
