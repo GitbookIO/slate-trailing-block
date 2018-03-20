@@ -2,16 +2,16 @@
 
 document:
   nodes:
-  - kind: block
+  - object: block
     type: heading
     nodes:
-      - kind: text
+      - object: text
         leaves:
           - text: My Title
-  - kind: block
+  - object: block
     # in unit tests, footnotes and paragraphs are matches for valid trailing block
     type: footnote
     nodes:
-      - kind: text
+      - object: text
         leaves:
           - text: My Title
