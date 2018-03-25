@@ -2,21 +2,21 @@
 
 document:
   nodes:
-  - kind: block
+  - object: block
     type: heading
     nodes:
-      - kind: text
+      - object: text
         leaves:
           - text: My Title
-  - kind: block
+  - object: block
     type: code_block
     nodes:
-      - kind: text
+      - object: text
         leaves:
           - text: Some code
-  - kind: block
+  - object: block
     type: paragraph
     nodes:
-      - kind: text
+      - object: text
         leaves:
           - text: ""
